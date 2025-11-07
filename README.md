@@ -1,4 +1,4 @@
-# SETI-Breakthrough-Listen_E.T.-Signal-Search (Research COde Compeition funded by Berkeley SETI Research Center)
+# SETI-Breakthrough-Listen_E.T.-Signal-Search (Research Code Compeition funded by Berkeley SETI Research Center)
 Find extraterrestrial signals in data from deep space
 
 Description:

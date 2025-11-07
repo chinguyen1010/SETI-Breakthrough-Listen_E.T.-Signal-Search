@@ -55,6 +55,7 @@ As the plot title suggests, this is the Voyager 1 spacecraft. Even though it’s
 While it would be nice to train our algorithms entirely on observations of interplanetary spacecraft, there are not many examples of them, and we also want to be able to find a wider range of signal types. So we’ve turned to simulating technosignature candidates.
 
 We’ve taken tens of thousands of cadence snippets, which we’re calling the haystack, and we’ve hidden needles among them. Some of these needles look similar to the Voyager 1 signal above and should be easy to detect, even with classical detection algorithms. Others are hidden in noisy regions of the spectrum and will be harder, even though they might be relatively obvious on visual inspection:
+
 <img width="2880" height="1446" alt="image" src="https://github.com/user-attachments/assets/d27808e8-6b5f-49fd-bea9-77f0f63e2bc4" />
 
 

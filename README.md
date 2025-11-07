@@ -50,11 +50,13 @@ So, you want to see an example of an extraterrestrial signal? Here you are:
 
 <img width="835" height="813" alt="Screenshot 2025-11-06 at 11 10 16 PM" src="https://github.com/user-attachments/assets/33ad5a16-4d18-4717-a47c-8011a4aadff5" />
 
+
 As the plot title suggests, this is the Voyager 1 spacecraft. Even though it’s 20 billion kilometers from Earth, it’s picked up clearly by the GBT. The first, third, and fifth panels are the “A” target (the spacecraft, in this case). The yellow diagonal line is the radio signal coming from Voyager. It’s detected when we point at the spacecraft, and it disappears when we point away. It’s a diagonal line in this plot because the relative motion of the Earth and the spacecraft imparts a Doppler drift, causing the frequency to change over time. As it happens, that’s another possible way to reject RFI, which has a higher tendency to remain at a fixed frequency over time.
 
 While it would be nice to train our algorithms entirely on observations of interplanetary spacecraft, there are not many examples of them, and we also want to be able to find a wider range of signal types. So we’ve turned to simulating technosignature candidates.
 
 We’ve taken tens of thousands of cadence snippets, which we’re calling the haystack, and we’ve hidden needles among them. Some of these needles look similar to the Voyager 1 signal above and should be easy to detect, even with classical detection algorithms. Others are hidden in noisy regions of the spectrum and will be harder, even though they might be relatively obvious on visual inspection:
+
 
 <img width="2880" height="1446" alt="image" src="https://github.com/user-attachments/assets/d27808e8-6b5f-49fd-bea9-77f0f63e2bc4" />
 

@@ -34,3 +34,37 @@ id,target
 etc.
 
 
+
+<img width="761" height="615" alt="Screenshot 2025-11-06 at 11 09 15 PM" src="https://github.com/user-attachments/assets/46773481-c0f6-4ca0-8be1-6ea9d0fd5cc8" />
+The screenshot above shows frequency on the horizontal axis (running from around 88.2 to 89.8 MHz) and time on the vertical axis. The bright orange feature at 88.5 MHz is the FM signal from KQED, a radio station in the San Francisco Bay Area. The solid yellow blocks on either side (one highlighted by the pointer in the screenshot) are the KQED “HD radio” signal (the same data as the FM signal, but encoded digitally). Additional FM stations are visible at different frequencies, including another obvious FM signal (without the corresponding digital sidebands) at 89.5 MHz.
+
+Breakthrough Listen generates similar spectrograms to the one shown above, but typically spanning several GHz of the radio spectrum (rather than the approx. 2 MHz shown above). The data are stored either as filterbank format or HDF5 format files, but essentially are arrays of intensity as a function of frequency and time, accompanied by headers containing metadata such as the direction the telescope was pointed in, the frequency scale, and so on. We generate over 1 PB of spectrograms per year; individual filterbank files can be tens of GB in size. For the purposes of the Kaggle challenge, we have discarded the majority of the metadata and are simply presenting numpy arrays consisting of small regions of the spectrograms that we refer to as “snippets”.
+
+Breakthrough Listen is searching for candidate signatures of extraterrestrial technology - so-called technosignatures. The main obstacle to doing so is that our own human technology (not just radio stations, but wifi routers, cellphones, and even electronics that are not deliberately designed to transmit radio signals) also gives off radio signals. We refer to these human-generated signals as “radio frequency interference”, or RFI.
+
+One method we use to isolate candidate technosignatures from RFI is to look for signals that appear to be coming from particular positions on the sky. Typically we do this by alternating observations of our primary target star with observations of three nearby stars: 5 minutes on star “A”, then 5 minutes on star “B”, then back to star “A” for 5 minutes, then “C”, then back to “A”, then finishing with 5 minutes on star “D”. One set of six observations (ABACAD) is referred to as a “cadence”. Since we’re just giving you a small range of frequencies for each cadence, we refer to the datasets you’ll be analyzing as “cadence snippets”.
+
+So, you want to see an example of an extraterrestrial signal? Here you are:
+
+
+<img width="835" height="813" alt="Screenshot 2025-11-06 at 11 10 16 PM" src="https://github.com/user-attachments/assets/33ad5a16-4d18-4717-a47c-8011a4aadff5" />
+
+As the plot title suggests, this is the Voyager 1 spacecraft. Even though it’s 20 billion kilometers from Earth, it’s picked up clearly by the GBT. The first, third, and fifth panels are the “A” target (the spacecraft, in this case). The yellow diagonal line is the radio signal coming from Voyager. It’s detected when we point at the spacecraft, and it disappears when we point away. It’s a diagonal line in this plot because the relative motion of the Earth and the spacecraft imparts a Doppler drift, causing the frequency to change over time. As it happens, that’s another possible way to reject RFI, which has a higher tendency to remain at a fixed frequency over time.
+
+While it would be nice to train our algorithms entirely on observations of interplanetary spacecraft, there are not many examples of them, and we also want to be able to find a wider range of signal types. So we’ve turned to simulating technosignature candidates.
+
+We’ve taken tens of thousands of cadence snippets, which we’re calling the haystack, and we’ve hidden needles among them. Some of these needles look similar to the Voyager 1 signal above and should be easy to detect, even with classical detection algorithms. Others are hidden in noisy regions of the spectrum and will be harder, even though they might be relatively obvious on visual inspection:
+<img width="2880" height="1446" alt="image" src="https://github.com/user-attachments/assets/d27808e8-6b5f-49fd-bea9-77f0f63e2bc4" />
+
+
+After we perform the signal injections, we normalize each snippet, so you probably can’t identify most of the needles just by looking for excess energy in the corresponding array. You’ll likely need a more subtle algorithm that looks for patterns that appear only in the on-target observations.
+
+Not all of the “needle” signals look like diagonal lines, and they may not be present for the entirety of all three “A” observations, but what they do have in common is that they are only present in some or all of the “A” observations (panels 1, 3, and 5 in the cadence snippets). Your challenge is to train an algorithm to find as many needles as you can, while minimizing the number of false positives from the haystack.
+
+Citation:
+
+Andrew Siemion, Don Diego Alonso, Walter Reade, Shirley Wang, Steve Croft, and Yuhong Chen. SETI Breakthrough Listen - E.T. Signal Search. https://kaggle.com/competitions/seti-breakthrough-listen, 2021. Kaggle.
+
+
+
+
